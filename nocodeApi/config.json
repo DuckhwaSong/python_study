@@ -1,0 +1,18 @@
+{
+    "endpoints": [
+      {
+        "path": "/",
+        "method": "GET",
+        "handler": "read_root",
+        "params": [],
+        "func":{"message": "Hello World"}
+      },
+      {
+        "path": "/items/{item_id}",
+        "method": "GET",
+        "handler": "read_item",
+        "params": ["item_id"],
+        "func":{"message": "Hello World"}
+      }
+    ]
+  }
