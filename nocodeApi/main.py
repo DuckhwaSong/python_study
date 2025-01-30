@@ -53,10 +53,50 @@ for endpoint in config["endpoints"]:
     else:
         raise ValueError(f"Handler '{handler_name}' not found")
 '''
-
+'''
 # 설정 파일에 따라 엔드포인트 추가
+valid_methods = {"get", "post", "put", "delete", "patch", "options", "head", "trace"}   # FastAPI 에서 지원하는 메소드
 for path, datas in config["projectProgram"].items():
     method = datas["method"].lower()
+    #app.get(path)(handler)
+    
+    if method in valid_methods:getattr(app, method)(path)(handler)
+    else:raise ValueError(f"Invalid HTTP method: invalid_method")    
+
+'''
+
+@app.get("/",summary="모든 아이템 조회",description="이 API는 데이터베이스에서 모든 아이템을 가져옵니다.")
+def read_root():
+    return {"Hello": "World"}
+
+#handler = handler_map.get("read_item")
+#handler = lambda item_id: {"item_id": item_id}
+handler = lambda item_id,item_name,item_ea: {"item_id": item_id,"item_name": item_name,"item_ea": item_ea}
+print(handler)
+method="get"
+getattr(app, method)("/aaa")(handler)
+
+
+func_dict = {
+    "name": "_bbb_ccc",
+    "param": "x,y",
+    "expression": "(x+y) * 2"
+}
+
+# 함수 코드 생성
+func_code = f"""
+def {func_dict['name']}({func_dict['param']}):
+    return {func_dict['expression']}
+"""
+
+# exec()로 함수 동적 생성
+exec(func_code, globals())  # globals()를 사용하면 전역에서 사용 가능
+
+# 생성된 함수 호출
+#print(custom_function(5,1))  # 10
+
+getattr(app, method)("/bbb")(_bbb_ccc)
+
 
 
 # python -X utf8 -m uvicorn main:app --port 5580 --reload --host 0.0.0.0 
