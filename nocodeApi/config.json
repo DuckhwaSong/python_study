@@ -1,4 +1,50 @@
 {
+  "projectDescript":{
+    "title":"My Custom API",
+    "description":"This is a custom API built with FastAPI.",
+    "version":"1.0.0",
+    "terms_of_service":"http://example.com/terms/",
+    "contact":{
+        "name": "API Support",
+        "url": "http://example.com/contact/",
+        "email": "support@example.com"
+    },
+    "license_info":{
+        "name": "Apache 2.0",
+        "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "projectProgram":{
+    "/":{
+      "version":"2에서 재고예정",
+      "method":"get",
+      "allow":{"user-agent":"mozilla","accept":"aplication/json"}
+      ,"deny":{"user-agent":"mozilla","accept":"aplication/json"}
+      ,"process":[
+        {"var1":{
+          "type":"sql"
+          ,"sql":"SELECT * FROM borad WHERE seq=%s"
+          }
+        }
+        ,{"var3":{
+          "type":"method"
+          ,"class":"abc"
+          ,"method":"abc"
+          ,"param":"var1"
+          }
+        }
+        ,{"var4":{
+          "type":"curl"
+          ,"url":"http://test.com?abc=1&bbb=2"
+          ,"method":"post"
+          ,"post":{"form1":"value1"}
+          ,"body":{"json2":"value2"}
+          }
+        }
+        ]
+      ,"return":"SELECT * FROM borad WHERE seq={:params.seq}"
+    }
+  },
     "endpoints": [
       {
         "path": "/",
@@ -11,7 +57,7 @@
         "path": "/items/{item_id}",
         "method": "GET",
         "handler": "read_item",
-        "params": ["item_id"],
+        "params": ["item_id","item_id2"],
         "func":{"message": "Hello World"}
       }
     ]

@@ -1,0 +1,1 @@
+python -X utf8 -m uvicorn main:app --port 5580 --reload --host 0.0.0.0
